@@ -1,7 +1,9 @@
 import React, { Component } from "react";
 import { Layout } from "antd";
+import { Link } from "react-router-dom";
 
 import SearchInputPC from "./SearchInputPC";
+import SearchListUnitPC from "./SearchListUnitPC";
 import CategoryDropdownPC from "./CategoryDropdownPC";
 import FilterDropdownPC from "./FilterDropdownPC";
 import FooterPC from "../layout/FooterPC";
@@ -11,19 +13,20 @@ const { Header, Footer, Sider, Content } = Layout;
 class DeapSearchPC extends Component {
   render() {
     return (
-      <Layout>
-        <Header>
-          <HeaderPC />
-        </Header>
-        <Content>
-          <SearchInputPC />
-          <CategoryDropdownPC />
-          <FilterDropdownPC />
-        </Content>
-        <Footer>
-          <FooterPC />
-        </Footer>
-      </Layout>
+      <React.Fragment>
+        <SearchInputPC {...this.props} />
+        <CategoryDropdownPC {...this.props} />
+        <FilterDropdownPC {...this.props} />
+        <div>
+          {this.props.StoreState.filtered.map(ele => {
+            return (
+              <Link to={`/store/${ele.id}`} key={ele.id}>
+                <SearchListUnitPC {...this.props} store={{ ...ele }} />
+              </Link>
+            );
+          })}
+        </div>
+      </React.Fragment>
     );
   }
 }

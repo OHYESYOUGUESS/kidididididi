@@ -1,28 +1,12 @@
 import React, { Component } from "react";
 
 import DeepSearchPC from "./DeepSearchPC";
+import withStoreCTX from "../../hocs/withStoreCTX";
+
 class DeepSearchCC extends Component {
-  state = {
-    searchText: "",
-    type: true,
-    filt: true
-  };
-
-  handleChangeText = e => {
-    this.setState({ searchText: e.target.value });
-  };
-
-  handleChangeType = e => {
-    this.setState({ type: e.target.value });
-  };
-
-  handleChangeFilt = e => {
-    this.setState({ filt: e.target.value });
-  };
-
   render() {
-    return <DeepSearchPC />;
+    return <DeepSearchPC {...this.props} />;
   }
 }
 
-export default DeepSearchCC;
+export default withStoreCTX(DeepSearchCC);

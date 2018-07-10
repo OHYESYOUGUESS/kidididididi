@@ -5,19 +5,42 @@ class CategoryDropdownPC extends Component {
   render() {
     const category = (
       <Menu>
-        <Menu.Item key="entire">Entire</Menu.Item>
-        <Menu.Item key="food">Food</Menu.Item>
-        <Menu.Item key="cafe">Cafe</Menu.Item>
-        <Menu.Item key="exp">Exprience</Menu.Item>
+        <Menu.Item
+          onClick={() => {
+            this.props.StoreFunc.typeChange("entire");
+          }}
+        >
+          Entire
+        </Menu.Item>
+        <Menu.Item
+          onClick={() => {
+            this.props.StoreFunc.typeChange("food");
+          }}
+        >
+          Food
+        </Menu.Item>
+        <Menu.Item
+          onClick={() => {
+            this.props.StoreFunc.typeChange("cafe");
+          }}
+        >
+          Cafe
+        </Menu.Item>
+
+        <Menu.Item
+          onClick={() => {
+            this.props.StoreFunc.typeChange("exp");
+          }}
+        >
+          Exprience
+        </Menu.Item>
       </Menu>
     );
 
     return (
-      <Dropdown overlay={category} trigger={["click"]}>
-        <a className="ant-dropdown-link" href="#">
-          Category <Icon type="down" />
-        </a>
-      </Dropdown>
+      <Dropdown.Button overlay={category} trigger={["click"]}>
+        {this.props.StoreState.type}
+      </Dropdown.Button>
     );
   }
 }

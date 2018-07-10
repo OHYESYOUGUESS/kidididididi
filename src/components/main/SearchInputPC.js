@@ -7,7 +7,7 @@ class SearchInputPC extends Component {
     return (
       <Input.Search
         placeholder="input search text"
-        onSearch={value => console.log(value)}
+        onSearch={value => this.props.StoreFunc.Searched(value)}
         style={{ width: 200 }}
       />
     );

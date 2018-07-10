@@ -9,50 +9,79 @@ class StoreProvider extends Component {
         id: "9702326644",
         storeName: "PROTO",
         address: "this",
-        location: "000,000",
-        pic: "",
+        location: "000,000", // 노 사용. 시간 노노
+        pic: "", // 노 사용. 시간 노노
         phone: "000-0000-0000",
         body: "welcome",
         type: "food",
-        update: "2018.01.01",
-        createDate: "2018.01.01",
-        timeunit: 3,
+        update: "2018.01.01", // 노 사용. 시간 노노
+        createDate: "2018.01.01", // 노 사용. 시간 노노
+        timeunit: 3, // 노 사용. 시간 노노. 무조건 2시간으로 세팅?!
         openTime: "10:00",
         closeTime: "22:00",
-        option: ["a", "b", "c"],
-        products: ["aa", "bb", "cc"]
+        option: ["a", "b", "c"], //body에 녹이기로. 시간 노노
+        products: ["aa", "bb", "cc"] //body에 녹이기로. 시간 노노
       }
     ],
-    typed: [],
-    filtered: [],
-    searched: []
+    type: "entire",
+    filter: "rank",
+    filtered: []
   };
 
   componentDidMount = () => {
     let arr = this.state.stores;
+    let brr = arr.filter(
+      ele =>
+        this.state.type === "entire" ? true : ele.type === this.state.type
+    );
+
+    let crr = brr.sort(function(a, b) {
+      switch (this.state.filter) {
+        case "score":
+          return b - a;
+        case "rank":
+          return a - b;
+        case "comment":
+          return b - a;
+        default:
+          break;
+      }
+    });
     this.setState({
-      typed: arr,
-      filtered: arr,
-      searched: arr
+      filtered: crr
     });
   };
 
-  Typed = (cat = true) => {
-    let arr = this.state.stores.filter(ele => ele.type === cat);
-    this.setState({ typed: arr });
+  Searched = (txt = true) => {
+    let arr = this.state.stores;
+    let brr = arr.filter(
+      ele =>
+        this.state.type === "entire" ? true : ele.type === this.state.type
+    );
+    let crr = brr.sort(function(a, b) {
+      switch (this.state.filter) {
+        case "score":
+          return b - a;
+        case "rank":
+          return a - b;
+        case "comment":
+          return b - a;
+        default:
+          break;
+      }
+    });
+    let drr = crr.filter(ele => {
+      return ele.storeName.includes(txt);
+    });
+    this.setState({ filtered: drr });
   };
 
-  Filtered = (filt = true) => {
-    this.typed();
-    let arr = this.state.typed.filter(ele => ele.type === filt);
-    this.setState({ filtered: arr });
+  filterChange = filt => {
+    this.setState({ filter: filt });
   };
 
-  Searched = (txt = "") => {
-    this.Typed();
-    this.Filtered();
-    let arr = this.state.filtered.match(ele => ele.type === txt);
-    this.setState({ searched: arr });
+  typeChange = ty => {
+    this.setState({ type: ty });
   };
 
   Create = (type, obj) => {
@@ -92,7 +121,10 @@ class StoreProvider extends Component {
       StoreFunc: {
         Create: this.Create,
         Delete: this.Delete,
-        Update: this.Update
+        Update: this.Update,
+        Searched: this.Searched,
+        filterChange: this.filterChange,
+        typeChange: this.typeChange
       }
     };
     return <Provider value={value}>{this.props.children}</Provider>;

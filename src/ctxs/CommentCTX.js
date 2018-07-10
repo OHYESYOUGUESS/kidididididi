@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+var moment = require("moment");
 
 const { Provider, Consumer } = React.createContext();
 
@@ -11,7 +12,7 @@ class CommentProvider extends Component {
         userId: "582400634055",
         storeId: "9702326644",
         body: "good",
-        logDate: "2018.01.01"
+        logDate: moment("2018.01.01", "YYYY.MM.DD")
       }
     ]
   };
@@ -19,7 +20,10 @@ class CommentProvider extends Component {
   Create = (type, obj) => {
     const arr = this.state[type].slice();
     arr.push(obj);
-    this.setState({ [type]: arr });
+    let brr = arr.sort((a, b) => {
+      a.format("x") - b.format("x");
+    });
+    this.setState({ [type]: brr });
   };
   // ctx data에 해당하는 문자열이 type
   // obj는 입력할 데이터. 그러니까 정해진 data form에 맞추어서 구성을 하고 넣어야 한다.
