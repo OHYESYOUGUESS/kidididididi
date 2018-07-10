@@ -1,7 +1,10 @@
 import React from "react";
-import { Form, Radio } from "semantic-ui-react";
+import { Radio } from "antd";
 import CommerceJoinForm from "../components/CommerceJoinForm";
 import GeneralJoinForm from "../components/GeneralJoinForm";
+
+const RadioGroup = Radio.Group;
+
 export default class JoinForm extends React.Component {
   state = {
     value: "general"
@@ -10,29 +13,21 @@ export default class JoinForm extends React.Component {
   render() {
     return (
       <React.Fragment>
-        <Form>
-          <Form.Field>
-            Selected value: <b>{this.state.value}</b>
-          </Form.Field>
-          <Form.Field>
-            <Radio
-              label="일반 사용자 회원 가입"
-              name="radioGroup"
-              value="general"
-              checked={this.state.value === "general"}
-              onChange={this.handleChange}
-            />
-          </Form.Field>
-          <Form.Field>
-            <Radio
-              label="관리자 회원 가입"
-              name="radioGroup"
-              value="commerce"
-              checked={this.state.value === "commerce"}
-              onChange={this.handleChange}
-            />
-          </Form.Field>
-        </Form>
+        Selected value: <b>{this.state.value}</b>
+        <Radio
+          label="일반 사용자 회원 가입"
+          name="radioGroup"
+          value="general"
+          checked={this.state.value === "general"}
+          onChange={this.handleChange}
+        />
+        <Radio
+          label="관리자 회원 가입"
+          name="radioGroup"
+          value="commerce"
+          checked={this.state.value === "commerce"}
+          onChange={this.handleChange}
+        />
         {this.state.value === "commerce" ? (
           <CommerceJoinForm />
         ) : (
