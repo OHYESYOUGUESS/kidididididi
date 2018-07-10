@@ -1,16 +1,23 @@
 import React, { Component } from "react";
-import { Dropdown } from "semantic-ui-react";
+import { Menu, Dropdown, Icon } from "antd";
 
 class CategoryDropdownPC extends Component {
   render() {
-    const category = [
-      { key: "Entire", text: "Entire", value: "entire" },
-      { key: "Cafe", text: "Cafe", value: "cafe" },
-      { key: "Food", text: "Food", value: "food" },
-      { key: "Exprience", text: "Exprience", value: "exp" }
-    ];
+    const category = (
+      <Menu>
+        <Menu.Item key="entire">Entire</Menu.Item>
+        <Menu.Item key="food">Food</Menu.Item>
+        <Menu.Item key="cafe">Cafe</Menu.Item>
+        <Menu.Item key="exp">Exprience</Menu.Item>
+      </Menu>
+    );
+
     return (
-      <Dropdown placeholder="Category" search selection options={category} />
+      <Dropdown overlay={category} trigger={["click"]}>
+        <a className="ant-dropdown-link" href="#">
+          Category <Icon type="down" />
+        </a>
+      </Dropdown>
     );
   }
 }

@@ -1,26 +1,23 @@
 import React, { Component } from "react";
+import { Menu, Dropdown, Icon } from "antd";
 
 class FilterDropdownPC extends Component {
   render() {
+    const filter = (
+      <Menu>
+        <Menu.Item key="distance">Distance</Menu.Item>
+        <Menu.Item key="score">Score</Menu.Item>
+        <Menu.Item key="comment">Comment</Menu.Item>
+        <Menu.Item key="ranking">Ranking</Menu.Item>
+      </Menu>
+    );
+
     return (
-      <div class="ui floating dropdown labeled search icon button">
-        <i class="dropdown icon" />
-        <span class="text">Filter</span>
-        <div class="menu">
-          <div class="item" data-value="distance">
-            Distance
-          </div>
-          <div class="item" data-value="score">
-            Score
-          </div>
-          <div class="item" data-value="comment">
-            Comment
-          </div>
-          <div class="item" data-value="ranking">
-            Ranking
-          </div>
-        </div>
-      </div>
+      <Dropdown overlay={filter} trigger={["click"]}>
+        <a className="ant-dropdown-link" href="#">
+          Filter <Icon type="down" />
+        </a>
+      </Dropdown>
     );
   }
 }
