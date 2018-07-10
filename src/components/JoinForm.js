@@ -1,37 +1,44 @@
 import React from "react";
 import { Form, Radio } from "semantic-ui-react";
+import CommerceJoinForm from "../components/CommerceJoinForm";
+import GeneralJoinForm from "../components/GeneralJoinForm";
 export default class JoinForm extends React.Component {
   state = {
-    value: null
+    value: "general"
   };
   handleChange = (e, { value }) => this.setState({ value });
   render() {
     return (
-      <React.Component>
+      <React.Fragment>
         <Form>
           <Form.Field>
             Selected value: <b>{this.state.value}</b>
           </Form.Field>
           <Form.Field>
             <Radio
-              label="일반 사용자 가입"
+              label="일반 사용자 회원 가입"
               name="radioGroup"
-              value="manager"
-              checked={this.state.value === "manager"}
+              value="general"
+              checked={this.state.value === "general"}
               onChange={this.handleChange}
             />
           </Form.Field>
           <Form.Field>
             <Radio
-              label="관리자 가입"
+              label="관리자 회원 가입"
               name="radioGroup"
-              value="user"
-              checked={this.state.value === "user"}
+              value="commerce"
+              checked={this.state.value === "commerce"}
               onChange={this.handleChange}
             />
           </Form.Field>
         </Form>
-      </React.Component>
+        {this.state.value === "commerce" ? (
+          <CommerceJoinForm />
+        ) : (
+          <GeneralJoinForm />
+        )}
+      </React.Fragment>
     );
   }
 }
