@@ -4,14 +4,7 @@ const { Provider, Consumer } = React.createContext();
 
 class UserProvider extends Component {
   state = {
-    activities: [
-      // {
-      //   id: 1,
-      //   taskId: 1,
-      //   userId: 1,
-      //   body: '완료된 작업 별 정렬 구현중',
-      //   logDate: '2018.06.01 2:41:48',
-      // },
+    users: [
     ]
   };
 
@@ -32,24 +25,12 @@ class UserProvider extends Component {
     }
   };
 
-  Create = async o => {
-    this.setState({ loading: true });
-    try {
-      const res = await serverAPI.post('/activities', o);
-      const get = await serverAPI.get('/activities');
-      this.setState({
-        activities: get.data,
-        loading: false,
-        target: res.data.id,
-      });
-    } catch (e) {
-      const get = await serverAPI.get('/activities');
-      this.setState({
-        activities: get.data,
-        loading: false,
-        target: '',
-      });
-    }
+  Create = obj => {
+    const arr = this.state.users.slice()
+    
+
+
+
   };
 
   Delete = async id => {
