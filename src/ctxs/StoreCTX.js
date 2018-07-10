@@ -2,16 +2,25 @@ import React, { Component } from 'react';
 
 const { Provider, Consumer } = React.createContext();
 
-class UserProvider extends Component {
+class StoreProvider extends Component {
   state = {
-    users: [
+    stores: [
       {
-        id: "582400634055",
-        username: 'proto',
-        password: 'asdf',
-        manager: false,
-        storeId: false,
-        accont: 0
+        id: "9702326644",
+        storeName: "PROTO",
+        address:"this", 
+        location:"000,000", 
+        pic:"",
+        phone:"000-0000-0000",
+        body:"welcome",
+        type:"food",
+        update: "2018.01.01",
+        createDate: "2018.01.01",
+        timeunit: 3,
+        openTime: "10:00",
+        closeTime: "22:00",
+        option: ["a", "b", "c"],
+        products: ['aa', 'bb', 'cc']
       }
     ]
   };
@@ -23,7 +32,7 @@ class UserProvider extends Component {
   };
 // ctx data에 해당하는 문자열이 type
 // obj는 입력할 데이터. 그러니까 정해진 data form에 맞추어서 구성을 하고 넣어야 한다.
-// obj에 id는 parseInt(Math.random()*1000000000000).toString()으로 정해주면... 되지 않을까?
+// obj에 id는 math.random() *1000000000000으로 정해주면... 되지 않을까?
 
 
   Delete = (type, id) => {
@@ -54,8 +63,8 @@ class UserProvider extends Component {
 
   render() {
     const value = {
-      UserState: this.state,
-      UserFunc: {
+      StoreState: this.state,
+      StoreFunc: {
         Create: this.Create,
         Delete: this.Delete,
         Update: this.Update,
@@ -65,4 +74,4 @@ class UserProvider extends Component {
   }
 }
 
-export { UserProvider, Consumer as UserConsumer };
+export { StoreProvider, Consumer as StoreConsumer };
