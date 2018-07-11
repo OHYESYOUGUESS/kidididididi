@@ -8,9 +8,9 @@ class CommentProvider extends Component {
     comments: [
       {
         id: "94463279403",
-        score: "5",
-        userId: "582400634055",
-        storeId: "9702326644",
+        score: 5,
+        userName: "joe",
+        storeName: "PROTO",
         body: "good",
         logDate: moment("2018.01.01", "YYYY.MM.DD")
       }
@@ -20,8 +20,8 @@ class CommentProvider extends Component {
   Create = (type, obj) => {
     const arr = this.state[type].slice();
     arr.push(obj);
-    let brr = arr.sort((a, b) => {
-      a.format("x") - b.format("x");
+    let brr = arr.sort((b, a) => {
+      return parseInt(a.logDate.format("x")) - parseInt(b.logDate.format("x"));
     });
     this.setState({ [type]: brr });
   };

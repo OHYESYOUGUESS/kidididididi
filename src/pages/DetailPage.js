@@ -7,12 +7,12 @@ class DetailPage extends Component {
   render() {
     return (
       <Route
-        path="/store/:id"
+        path="/store/:name"
         render={({ match }) => {
-          <DetailContainerCC
-            storeID={parseInt(match.params.id)}
-            {...this.props}
-          />;
+          console.log("detail cc render");
+          return (
+            <DetailContainerCC storeName={match.params.name} {...this.props} />
+          );
         }}
       />
     );

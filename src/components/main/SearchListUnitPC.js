@@ -12,7 +12,7 @@ class SearchListUnitPC extends Component {
         ) : (
           <Icon type="apple" />
         )}
-        <span>{this.props.storeName}</span>
+        <span>{this.props.store.storeName}</span>
         {this.props.StoreState.filter === "score" ? (
           <span>5.0</span>
         ) : this.props.StoreState.filter === "comment" ? (

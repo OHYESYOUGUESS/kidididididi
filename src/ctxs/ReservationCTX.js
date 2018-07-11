@@ -7,10 +7,11 @@ class ReservationProvider extends Component {
     reservations: [
       {
         id: "525965147821",
-        userId: "582400634055",
-        storeId: "9702326644",
-        beginDate: "2018.01.01-10:00",
-        dueDate: "2018.01.01-13:00"
+        userName: "joe",
+        storeName: "PROTO",
+        beginDate: "2018.01.01 10:00",
+        dueDate: "2018.01.01 13:00",
+        price: 23000
       }
     ]
   };

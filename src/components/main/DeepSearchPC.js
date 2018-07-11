@@ -20,7 +20,7 @@ class DeapSearchPC extends Component {
         <div>
           {this.props.StoreState.filtered.map(ele => {
             return (
-              <Link to={`/store/${ele.id}`} key={ele.id}>
+              <Link to={`/store/${ele.storeName}`} key={ele.storeName}>
                 <SearchListUnitPC {...this.props} store={{ ...ele }} />
               </Link>
             );

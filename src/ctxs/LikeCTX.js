@@ -7,8 +7,8 @@ class LikeProvider extends Component {
     likes: [
       {
         id: "775993424720",
-        userId: "582400634055",
-        storeId: "9702326644"
+        userNamw: "joe",
+        storeName: "PROTO"
       }
     ]
   };

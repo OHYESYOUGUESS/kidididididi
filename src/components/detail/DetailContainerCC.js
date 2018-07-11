@@ -13,22 +13,29 @@ class DetailContainerCC extends Component {
 
   componentDidMount = () => {
     let obj = this.props.StoreState.stores.filter(
-      ele => ele.id === this.props.storeID
+      ele => ele.storeName === this.props.storeName
     )[0];
+    console.log(obj);
     this.setState({ store: obj });
   };
 
   handleChange = e => {
     this.setState({ text: e.target.value });
+    console.log(this.state.text);
+  };
+
+  handleScore = v => {
+    this.setState({ score: v });
+    console.log(this.state.score);
   };
 
   handleCreate = () => {
     const obj = {
       id: parseInt(Math.random() * 1000000000000).toString(),
-      score: "5",
-      userId: "582400634055",
-      storeId: this.props.storeID,
-      body: "good",
+      score: this.state.score,
+      userName: "joe",
+      storeName: this.props.storeName,
+      body: this.state.text,
       logDate: moment()
     };
     this.props.CommentFunc.Create("comments", obj);
@@ -40,6 +47,7 @@ class DetailContainerCC extends Component {
         {...this.props}
         onChange={this.handleChange}
         onCreate={this.handleCreate}
+        onScore={this.handleScore}
         store={this.state.store}
       />
     );
